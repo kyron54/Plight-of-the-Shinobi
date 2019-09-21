@@ -5,7 +5,6 @@ using UnityEngine;
 public class BackgroundMovement : MonoBehaviour
 {
 
-    public float        m_speed = -5f;
     public GameObject   m_otherbackground;
     public int          m_bg1_percent = 25;
     public int          m_bg2_percent = 25;
@@ -15,9 +14,11 @@ public class BackgroundMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (AvatarActions.playerDead == false)
+        {
+            transform.position += Vector3.left * Time.deltaTime * GlobalValues.gameSpeed;
+        }
 
-        transform.position += new Vector3(m_speed * Time.deltaTime, 0, 0);
-       
     }
 
     private void LateUpdate()

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ObstacleController : MonoBehaviour
 {
 
-    float speed = 5f;
+    public float speedAdjustment = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -16,16 +16,19 @@ public class ObstacleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (AvatarActions.playerDead == false)
+        
 
-        transform.position += Vector3.left * Time.deltaTime * speed;
+            transform.position += Vector3.left * Time.deltaTime * (GlobalValues.gameSpeed + speedAdjustment);
+        
 
         if (transform.position.x < -10)
         {
             Object.Destroy(gameObject);
         }
 
-        Debug.Log("Health " + AvatarActions.playerHealth);
-        Debug.Log("Is dead? " + AvatarActions.playerDead);
+      //  Debug.Log("Health " + AvatarActions.playerHealth);
+       // Debug.Log("Is dead? " + AvatarActions.playerDead);
 
     }
 
@@ -37,7 +40,4 @@ public class ObstacleController : MonoBehaviour
         Object.Destroy(gameObject);
 
     }
-
-
-
 }

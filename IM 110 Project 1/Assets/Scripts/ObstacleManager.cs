@@ -6,11 +6,17 @@ public class ObstacleManager : MonoBehaviour
 {
 
     public GameObject obstaclePrefab;
+    public float spawnRate = 12f;
+    float lastSpawnTime = 0f;
 
     // Start is called before the first frame update
-    void Start()
+    void Update()
     {
-        InvokeRepeating("CreateObstacle", 0.25f, 2f);
+        if(Time.time > lastSpawnTime + spawnRate/GlobalValues.gameSpeed)
+        {
+            lastSpawnTime = Time.time;
+            CreateObstacle();
+        }
     }
 
     // Creates Obstacle
