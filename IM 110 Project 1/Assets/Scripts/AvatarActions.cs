@@ -11,6 +11,7 @@ public class AvatarActions : MonoBehaviour
     public Text scoreText;
     int score = 0;
     public Text liveText;
+    float lastSpawnTime = 0f;
 
     private void Start()
     {
@@ -22,8 +23,18 @@ public class AvatarActions : MonoBehaviour
 
     void UpdateScore()
     {
-        score = score +1;
-        scoreText.text = "Score: " + score;
+        if (playerDead == false)
+        {
+            score = score + 1;
+            scoreText.text = "Score: " + score;
+        }
+
+        if(playerDead == true)
+        {
+
+            score = score;
+
+        }
 
     }
 
@@ -40,34 +51,64 @@ public class AvatarActions : MonoBehaviour
     void Update()
     {
 
+
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (canJump)
             {
                 canJump = false;
 
+                GetComponent<Animator>().SetBool("Jump", true);
+
                 // code taken from https://stackoverflow.com/questions/25350411/unity-2d-jumping-script
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 7), ForceMode2D.Impulse);
                 HitBoxManager.canAttack = false;
+
             }
 
         }
 
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-           // Debug.Log("Attack!");
+            if (HitBoxManager.canAttack = true)
+            {
+
+                GetComponent<Animator>().SetBool("Attack", true);
+                HitBoxManager.canAttack = false;
+
+            }
+
         }
+
+        if (Time.time > lastSpawnTime + .5)
+        {
+            lastSpawnTime = Time.time;
+            GetComponent<Animator>().SetBool("Attack", false);
+        }
+
+            if (HitBoxManager.canAttack = false)
+            {
+
+
+                HitBoxManager.canAttack = true;
+
+            }
+
 
         playerDead = false;
 
         if (playerHealth <= 0)
         {
             playerDead = true;
+            GetComponent<Animator>().SetBool("Death", true);
 
             if (playerDead = true)
             {
+                
                 liveText.text = "Lives: 0";
-                Object.Destroy(gameObject);
+                //Object.Destroy(gameObject);
+                canJump = false;
+                
             }
         }
 
@@ -76,10 +117,12 @@ public class AvatarActions : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "Ground")
+        if (coll.gameObject.tag == "Ground" && !canJump)
         {
             canJump = true;
             HitBoxManager.canAttack = true;
+
+            GetComponent<Animator>().SetBool("Jump", false);
         }
     }
 }

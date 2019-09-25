@@ -26,10 +26,12 @@ public class HitBoxManager : MonoBehaviour
         {
             if (canAttack = true)
             {
-                Debug.Log("Hitbox Drawn");
+               // Debug.Log("Hitbox Drawn");
                 CreateHitBox();
             } 
         }
+
+
 
     }
 
