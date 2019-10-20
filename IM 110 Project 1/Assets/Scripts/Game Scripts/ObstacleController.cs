@@ -7,14 +7,11 @@ public class ObstacleController : MonoBehaviour
 {
 
     public float speedAdjustment = 1f;
-    public Text killsText;
-    int kills = 0;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        
 
     }
 
@@ -47,18 +44,10 @@ public class ObstacleController : MonoBehaviour
         else
         {
 
+
             Object.Destroy(gameObject);
-            InvokeRepeating("UpdateKills", 1f, .01f);
 
         }
-
-    }
-
-    void UpdateKills()
-    {
-
-        kills = kills + 1;
-        killsText.text = "Kills: " + kills;
 
     }
 

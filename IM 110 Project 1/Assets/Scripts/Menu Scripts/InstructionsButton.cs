@@ -19,4 +19,18 @@ public class InstructionsButton : MonoBehaviour
         SceneManager.LoadScene("Instructions");
 
     }
+
+    void OnMouseOver()
+    {
+
+        GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Main Menu/Instructions_Down");
+
+    }
+
+    void OnMouseExit()
+    {
+
+        GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Main Menu/Instructions");
+
+    }
 }

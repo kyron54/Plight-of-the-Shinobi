@@ -22,8 +22,11 @@ public class HitBoxController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
 
-            if (Time.time > lastSpawnTime + .5)
+            HitBoxManager.canAttack = false;
+
+            if (Time.time > lastSpawnTime + 2)
             {
+                HitBoxManager.canAttack = true;
                 lastSpawnTime = Time.time;
                 Object.Destroy(gameObject);
             }

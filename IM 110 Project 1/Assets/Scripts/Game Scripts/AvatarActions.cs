@@ -13,6 +13,11 @@ public class AvatarActions : MonoBehaviour
     int score = 0;
     public Text liveText;
     float lastSpawnTime = 0f;
+    float jumpCount = 0f;
+    public Text replayText;
+    AudioSource sndSlice; // Sound Provided by Tabook on freesound.org: https://freesound.org/people/Tabook/sounds/431221/
+    AudioSource sndJump; // Sound Provided bt nextmaking on freesound.org https://freesound.org/people/nextmaking/sounds/86007/
+    AudioSource sndHit; //
 
     private void Start()
     {
@@ -20,6 +25,11 @@ public class AvatarActions : MonoBehaviour
         InvokeRepeating("UpdateScore", 1f, .2f);
         InvokeRepeating("UpdateLives", 1f, .01f);
 
+        AudioSource[] src = GetComponents<AudioSource>();
+
+        sndSlice = src[0];
+        sndJump = src[1];
+        sndHit = src[2];
     }
 
     void UpdateScore()
@@ -28,12 +38,13 @@ public class AvatarActions : MonoBehaviour
         {
             score = score + 1;
             scoreText.text = "Score: " + score;
+
         }
 
         if(playerDead == true)
         {
 
-            score = score;
+            score = score +0;
 
         }
 
@@ -55,15 +66,20 @@ public class AvatarActions : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (canJump)
+
+            jumpCount = jumpCount + 1;
+
+            if (jumpCount <= 2f)
             {
                 canJump = false;
 
                 GetComponent<Animator>().SetBool("Jump", true);
 
+                sndJump.Play();
+
                 // code taken from https://stackoverflow.com/questions/25350411/unity-2d-jumping-script
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 7), ForceMode2D.Impulse);
-                HitBoxManager.canAttack = false;
+
 
             }
 
@@ -71,15 +87,17 @@ public class AvatarActions : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (HitBoxManager.canAttack = true)
-            {
 
-                GetComponent<Animator>().SetBool("Attack", true);
-                HitBoxManager.canAttack = false;
+                if (HitBoxManager.canAttack && !playerDead)
+                {
 
-            }
+                    GetComponent<Animator>().SetBool("Attack", true);
+                    sndSlice.Play();
+
+                }
 
         }
+        
 
         if (Time.time > lastSpawnTime + .5)
         {
@@ -87,23 +105,13 @@ public class AvatarActions : MonoBehaviour
             GetComponent<Animator>().SetBool("Attack", false);
         }
 
-            if (HitBoxManager.canAttack = false)
-            {
 
-
-                HitBoxManager.canAttack = true;
-
-            }
-
-
-        playerDead = false;
-
-        if (playerHealth <= 0)
+        if (playerHealth <= 0f)
         {
             playerDead = true;
             GetComponent<Animator>().SetBool("Death", true);
 
-            if (playerDead = true)
+            if (playerDead)
             {
                 
                 liveText.text = "Lives: 0";
@@ -126,19 +134,28 @@ public class AvatarActions : MonoBehaviour
                 Invoke("OpenMenu", 0f);
 
             }
+
         }
 
     }
 
+
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "Ground" && !canJump)
-        {
-            canJump = true;
-            HitBoxManager.canAttack = true;
+        
+            if (coll.gameObject.tag == "Ground" && !canJump && !playerDead)
+            {
+                canJump = true;
+                jumpCount = 0f;
+                GetComponent<Animator>().SetBool("Jump", false);
+            }
+    }
 
-            GetComponent<Animator>().SetBool("Jump", false);
-        }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+
+        sndHit.Play();
+
     }
 
     void OpenMenu()
@@ -147,5 +164,20 @@ public class AvatarActions : MonoBehaviour
         SceneManager.LoadScene("Main Menu");
 
     }
+
+    public void OnMouseDown()
+    {
+        if (playerDead)
+        {
+            GlobalValues.gameSpeed = 2f;
+            playerHealth = 3f;
+            lastSpawnTime = 0f;
+            score = 0;
+            playerDead = false;
+            Invoke("OpenMenu", 0f);
+        }
+
+    }
+
 
 }

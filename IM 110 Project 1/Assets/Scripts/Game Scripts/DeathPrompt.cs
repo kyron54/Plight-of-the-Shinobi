@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlobalValues : MonoBehaviour
+public class DeathPrompt : MonoBehaviour
 {
-
-    public static float gameSpeed = 2f;
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +13,13 @@ public class GlobalValues : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameSpeed += Time.deltaTime/6;
+        
+        if(AvatarActions.playerDead)
+        {
+
+            GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Main Menu/Death Prompt");
+
+        }
+
     }
 }

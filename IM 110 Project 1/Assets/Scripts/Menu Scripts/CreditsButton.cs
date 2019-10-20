@@ -20,4 +20,18 @@ public class CreditsButton : MonoBehaviour
         SceneManager.LoadScene("Credits");
 
     }
+
+    void OnMouseOver()
+    {
+
+        GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Main Menu/Credits_Down");
+
+    }
+
+    void OnMouseExit()
+    {
+
+        GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Main Menu/Credits");
+
+    }
 }

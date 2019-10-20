@@ -8,11 +8,14 @@ public class HitBoxManager : MonoBehaviour
    public static bool canAttack = true;
 
     public GameObject hitBoxPrefab;
+    float lastSpawnTime = 0f;
 
 
     // Start is called before the first frame update
     void Start()
     {
+
+        canAttack = true;
 
     }
 
@@ -20,29 +23,47 @@ public class HitBoxManager : MonoBehaviour
     void Update()
     {
 
-       // Debug.Log("canAttack: " + canAttack);
-
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        if (canAttack && !AvatarActions.playerDead)
         {
-            if (canAttack = true)
+
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
-               // Debug.Log("Hitbox Drawn");
+
+
                 CreateHitBox();
-            } 
+                canAttack = false;
+
+
+            }
         }
 
+        CanAttackUpdate();
 
+    }
+
+    void CanAttackUpdate()
+    {
+
+        if (Time.time > lastSpawnTime + 1f)
+        {
+
+            canAttack = true;
+
+        }
 
     }
 
     void CreateHitBox()
     {
 
+        lastSpawnTime = Time.time;
+
         float avatarPos = GameObject.Find("avatar").transform.position.y;
 
 
         GameObject obj = Instantiate(hitBoxPrefab, transform);
         obj.transform.position = new Vector3(-5f, avatarPos, -2f);
+
 
     }
 

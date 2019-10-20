@@ -8,12 +8,13 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 685062796348539802}
+  - component: {fileID: 5292230439568904901}
   - component: {fileID: 685062796348539801}
   - component: {fileID: 685062796348539800}
   - component: {fileID: -3684165555274870895}
   - component: {fileID: 6496754326466799827}
   - component: {fileID: 2610862792231376058}
+  - component: {fileID: 7679720189699706131}
   m_Layer: 0
   m_Name: EnemyPrefab
   m_TagString: Enemy
@@ -21,20 +22,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &685062796348539802
-Transform:
+--- !u!224 &5292230439568904901
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685062796348539807}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: -3, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 5, y: -3}
+  m_SizeDelta: {x: 2.0266666, y: 1.7066667}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &685062796348539801
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -142,9 +148,17 @@ Animation:
   m_GameObject: {fileID: 685062796348539807}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: e057e6ee4a8df724591b8168d8ae69b9, type: 2}
+  m_Animation: {fileID: 0}
   m_Animations: []
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!222 &7679720189699706131
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685062796348539807}
+  m_CullTransparentMesh: 0
