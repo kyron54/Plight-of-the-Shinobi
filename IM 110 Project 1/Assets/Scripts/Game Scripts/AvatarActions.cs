@@ -17,7 +17,8 @@ public class AvatarActions : MonoBehaviour
     public Text replayText;
     AudioSource sndSlice; // Sound Provided by Tabook on freesound.org: https://freesound.org/people/Tabook/sounds/431221/
     AudioSource sndJump; // Sound Provided bt nextmaking on freesound.org https://freesound.org/people/nextmaking/sounds/86007/
-    AudioSource sndHit; //
+    AudioSource sndHit; // Sound Provided by Raclure on freesound.org https://freesound.org/people/Raclure/sounds/458867/
+    AudioSource sndItem; // Sound Provided by TreasureSounds on freesound.org https://freesound.org/people/TreasureSounds/sounds/332629/
 
     private void Start()
     {
@@ -30,6 +31,7 @@ public class AvatarActions : MonoBehaviour
         sndSlice = src[0];
         sndJump = src[1];
         sndHit = src[2];
+        sndItem = src[3];
     }
 
     void UpdateScore()
@@ -82,6 +84,15 @@ public class AvatarActions : MonoBehaviour
 
 
             }
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            
+
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -10), ForceMode2D.Impulse);
+
 
         }
 
@@ -153,8 +164,19 @@ public class AvatarActions : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.tag == "Enemy")
+        {
 
-        sndHit.Play();
+            sndHit.Play();
+
+        }
+
+        if (other.gameObject.tag == "Item")
+        {
+
+            sndItem.Play();
+
+        }
 
     }
 
