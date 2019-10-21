@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpikeController : MonoBehaviour
+public class WallController : MonoBehaviour
 {
-
     public float speedAdjustment = 1f;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,11 +36,10 @@ public class SpikeController : MonoBehaviour
     {
         if (other.gameObject.name == "avatar")
         {
-            AvatarActions.playerHealth = 0;
+            AvatarActions.playerHealth--;
             Object.Destroy(gameObject);
 
         }
 
     }
-
 }

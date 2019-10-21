@@ -2077,6 +2077,8 @@ MonoBehaviour:
     type: 3}
   healthPrefab: {fileID: 6924605352372367756, guid: 15cbe89e00725064f84ecbf8dcbdbcd7,
     type: 3}
+  wallPrefab: {fileID: 6760249480087265968, guid: f287af192042ad340addfc41a0170e7f,
+    type: 3}
   spawnRate: 12
 --- !u!4 &2123136897
 Transform:

@@ -9,10 +9,12 @@ public class ObstacleManager : MonoBehaviour
     public GameObject obstaclePrefab;
     public GameObject trapPrefab;
     public GameObject healthPrefab;
+    public GameObject wallPrefab;
     public float spawnRate = 12f;
     float lastSpawnTime1 = 0f;
     float lastSpawnTime2 = 0f;
     float lastSpawnTime3 = 0f;
+    float lastSpawnTime4 = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -25,8 +27,9 @@ public class ObstacleManager : MonoBehaviour
     {
 
         int randomNumber1 = Random.Range(0, 5000);
-        int randomNumber2 = Random.Range(0, 5000);
+        int randomNumber2 = Random.Range(0, 500000);
         int randomNumber3 = Random.Range(0, 4999);
+        int randomNumber4 = Random.Range(0, 5000);
 
         if (Time.time >= lastSpawnTime1 + randomNumber1/spawnRate)
         {
@@ -58,8 +61,16 @@ public class ObstacleManager : MonoBehaviour
 
         }
 
+        if (Time.time >= lastSpawnTime4 + randomNumber4 / GlobalValues.gameSpeed)
+        {
+                lastSpawnTime4 = Time.time;
+                CreateWall();
+        }
+
         
-        
+
+
+
         spawnRate = GlobalValues.gameSpeed * 1.2f;
 
     }
@@ -89,6 +100,16 @@ public class ObstacleManager : MonoBehaviour
         if (!AvatarActions.playerDead)
         {
             GameObject obj = Instantiate(healthPrefab, transform);
+            obj.transform.position = new Vector3(10f, -3f, -2f);
+        }
+
+    }
+
+    void CreateWall()
+    {
+        if (!AvatarActions.playerDead)
+        {
+            GameObject obj = Instantiate(wallPrefab, transform);
             obj.transform.position = new Vector3(10f, -3f, -2f);
         }
 
