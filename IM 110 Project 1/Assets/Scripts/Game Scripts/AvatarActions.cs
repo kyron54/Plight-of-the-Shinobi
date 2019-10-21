@@ -14,7 +14,7 @@ public class AvatarActions : MonoBehaviour
     public Text liveText;
     float lastSpawnTime = 0f;
     float jumpCount = 0f;
-    public Text replayText;
+    public Text killsText;
     AudioSource sndSlice; // Sound Provided by Tabook on freesound.org: https://freesound.org/people/Tabook/sounds/431221/
     AudioSource sndJump; // Sound Provided bt nextmaking on freesound.org https://freesound.org/people/nextmaking/sounds/86007/
     AudioSource sndHit; // Sound Provided by Raclure on freesound.org https://freesound.org/people/Raclure/sounds/458867/
@@ -25,6 +25,7 @@ public class AvatarActions : MonoBehaviour
         playerDead = false;
         InvokeRepeating("UpdateScore", 1f, .2f);
         InvokeRepeating("UpdateLives", 1f, .01f);
+        InvokeRepeating("UpdateKills", 1f, .01f);
 
         AudioSource[] src = GetComponents<AudioSource>();
 
@@ -59,6 +60,18 @@ public class AvatarActions : MonoBehaviour
             liveText.text = "Lives: " + playerHealth;
         } 
     
+    }
+
+    void UpdateKills()
+    {
+
+        if(!playerDead)
+        {
+
+            killsText.text = "kills: " + ObstacleController.kills;
+
+        }
+
     }
 
     // Update is called once per frame
@@ -142,6 +155,7 @@ public class AvatarActions : MonoBehaviour
                 lastSpawnTime = 0f;
                 score = 0;
                 playerDead = false;
+                ObstacleController.kills = 0;
                 Invoke("OpenMenu", 0f);
 
             }
@@ -196,6 +210,7 @@ public class AvatarActions : MonoBehaviour
             lastSpawnTime = 0f;
             score = 0;
             playerDead = false;
+            ObstacleController.kills = 0;
             Invoke("OpenMenu", 0f);
         }
 

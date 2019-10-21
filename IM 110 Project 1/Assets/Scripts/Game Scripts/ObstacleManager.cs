@@ -26,7 +26,7 @@ public class ObstacleManager : MonoBehaviour
 
         int randomNumber1 = Random.Range(0, 5000);
         int randomNumber2 = Random.Range(0, 5000);
-        int randomNumber3 = Random.Range(0, 50000);
+        int randomNumber3 = Random.Range(0, 4999);
 
         if (Time.time >= lastSpawnTime1 + randomNumber1/spawnRate)
         {
@@ -40,13 +40,26 @@ public class ObstacleManager : MonoBehaviour
             CreateSpike();
         }
 
-        if (Time.time >= lastSpawnTime3 + randomNumber3 / GlobalValues.gameSpeed)
+        if (42 == randomNumber3)
         {
             lastSpawnTime3 = Time.time;
             CreateHealth();
+            
         }
 
+        if(GlobalValues.gameSpeed >= 16)
+        {
 
+            if (Time.time >= lastSpawnTime1 + randomNumber1 / spawnRate)
+            {
+                lastSpawnTime1 = Time.time;
+                CreateObstacle();
+            }
+
+        }
+
+        
+        
         spawnRate = GlobalValues.gameSpeed * 1.2f;
 
     }

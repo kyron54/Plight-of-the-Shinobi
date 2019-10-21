@@ -7,6 +7,8 @@ public class ObstacleController : MonoBehaviour
 {
 
     public float speedAdjustment = 1f;
+    AvatarActions KillsRenew;
+    public static int kills = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +46,7 @@ public class ObstacleController : MonoBehaviour
         else
         {
 
-
+            kills++;
             Object.Destroy(gameObject);
 
         }

@@ -18,5 +18,14 @@ public class GlobalValues : MonoBehaviour
     void Update()
     {
         gameSpeed += Time.deltaTime/6;
+
+
+        if(gameSpeed >= 22)
+        {
+
+            gameSpeed = 22;
+
+        }
+
     }
 }

@@ -25,6 +25,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpikePrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5292230439568904901, guid: 9b2981007614c9c4d91f29a875e60a99,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 685062796348539801, guid: 9b2981007614c9c4d91f29a875e60a99,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 655709798738885468, guid: 2f50f4fcd320fa04f8759f7fe365177e,
+        type: 3}
+    - target: {fileID: 685062796348539801, guid: 9b2981007614c9c4d91f29a875e60a99,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2.2755556
+      objectReference: {fileID: 0}
+    - target: {fileID: 685062796348539801, guid: 9b2981007614c9c4d91f29a875e60a99,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.2755556
+      objectReference: {fileID: 0}
+    - target: {fileID: 6496754326466799827, guid: 9b2981007614c9c4d91f29a875e60a99,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: cf32eba6afb8d8b439de1fcf8adf12d1, type: 2}
     - target: {fileID: 685062796348539802, guid: 9b2981007614c9c4d91f29a875e60a99,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -80,27 +106,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 685062796348539801, guid: 9b2981007614c9c4d91f29a875e60a99,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 655709798738885468, guid: 2f50f4fcd320fa04f8759f7fe365177e,
-        type: 3}
-    - target: {fileID: 685062796348539801, guid: 9b2981007614c9c4d91f29a875e60a99,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 2.2755556
-      objectReference: {fileID: 0}
-    - target: {fileID: 685062796348539801, guid: 9b2981007614c9c4d91f29a875e60a99,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 2.2755556
-      objectReference: {fileID: 0}
-    - target: {fileID: 6496754326466799827, guid: 9b2981007614c9c4d91f29a875e60a99,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: cf32eba6afb8d8b439de1fcf8adf12d1, type: 2}
     m_RemovedComponents:
     - {fileID: 685062796348539800, guid: 9b2981007614c9c4d91f29a875e60a99, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9b2981007614c9c4d91f29a875e60a99, type: 3}
